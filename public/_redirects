@@ -1,6 +1,14 @@
-# Force the www subdomain to the canonical apex domain (matches astro.config's
-# `site` and every canonical/OG/sitemap URL in this project). Without this,
-# Cloudflare would happily serve identical content at both hosts if a visitor
-# ever adds the www custom domain, which Google can flag as duplicate,
-# non-canonical content instead of a clean redirect to the indexed URL.
-https://www.solahairsalon.com/* https://solahairsalon.com/:splat 301!
+# NOTE: the www → apex canonical redirect that used to live here was
+# removed. Cloudflare's newer Workers Static Assets deploy path (which this
+# project uses) rejects _redirects rules with an absolute/host-based source
+# URL ("Only relative URLs are allowed") — that syntax only worked on
+# classic Cloudflare Pages. Host-level redirects like www → apex now need
+# to be set up in the Cloudflare dashboard instead: Rules → Redirect Rules
+# → create a rule matching hostname equals "www.solahairsalon.com",
+# redirecting to "https://solahairsalon.com/${1}" (or a static target),
+# status 301. See the README's "Non-canonical redirect" section for the
+# exact steps.
+#
+# This file is kept as a placeholder for any future path-only (relative)
+# redirects, which are still fully supported here — e.g.:
+#   /old-page /new-page 301

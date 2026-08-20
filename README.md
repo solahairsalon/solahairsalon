@@ -134,7 +134,7 @@ src/
     blog/index.astro · about.astro · privacy-policy.astro · terms.astro · disclaimer.astro · 404.astro
 public/
   _headers                      Cloudflare Pages security headers (CSP, HSTS, etc.)
-  _redirects                    www → apex canonical redirect
+  _redirects                    Placeholder for relative-path redirects (see note below)
   robots.txt · llms.txt · site.webmanifest · favicons
   images/gallery/                Real salon photos + video poster frame
   video/studio-tour.mp4          Compressed, silent studio walkthrough
@@ -225,9 +225,10 @@ deploying.
 - [ ] Run Lighthouse/PageSpeed Insights after deploying and re-check the CSP
       against any third-party script you add later (AdSense, analytics) —
       you'll need to extend `public/_headers` to allowlist those domains
-- [ ] In the Cloudflare Pages dashboard, add **both** `solahairsalon.com` and
-      `www.solahairsalon.com` as custom domains so the `www` → apex redirect
-      in `public/_redirects` actually has something to redirect *from*
+- [ ] In the Cloudflare dashboard, add **both** `solahairsalon.com` and
+      `www.solahairsalon.com` as custom domains, then set up the www → apex
+      redirect via **Rules → Redirect Rules** (not `public/_redirects` — see
+      "Non-canonical redirects" below for why)
 - [ ] As real content dates become known, pass explicit `publishDate` /
       `modifiedDate` props (`YYYY-MM-DD`) into a page's `<Layout>` call instead
       of relying on the site-wide default — see "SEO/technical fixes" below
@@ -247,11 +248,20 @@ deploying.
   matching `datePublished` / `dateModified` fields merged in. All pages
   currently share one default date; update it per page as real publish dates
   are known.
-- **Non-canonical redirects / duplicate-host indexing**: added
-  `public/_redirects` to force `www.solahairsalon.com` → `solahairsalon.com`
-  (301) so Google never has two hosts serving identical content — this only
-  activates once both hostnames are added as custom domains in Cloudflare
-  Pages (see checklist). HTTPS is enforced automatically by Cloudflare.
+- **Non-canonical redirects / duplicate-host indexing**: originally handled
+  via a host-based rule in `public/_redirects` (`www.solahairsalon.com` →
+  `solahairsalon.com`, 301). That syntax only works on classic Cloudflare
+  Pages — this project deploys through Cloudflare's newer **Workers Static
+  Assets** path (see "wrangler.toml" below), whose `_redirects` parser
+  rejects absolute/host-based source URLs ("Only relative URLs are
+  allowed"). The fix: that rule was removed from `_redirects`, and the same
+  redirect needs to be set up instead in the Cloudflare dashboard under
+  **Rules → Redirect Rules** — create a rule matching "Hostname equals
+  www.solahairsalon.com", redirecting to `https://solahairsalon.com/${1}`
+  (or a static target), status 301. This works regardless of which deploy
+  path your project uses, and is Cloudflare's currently recommended
+  approach for domain-level redirects anyway. HTTPS itself is still
+  enforced automatically by Cloudflare with no extra config needed.
   `trailingSlash: 'always'` in `astro.config.mjs` keeps every internal link,
   canonical tag, and sitemap entry on the same URL shape, so there's no
   separate redirect needed for that.
