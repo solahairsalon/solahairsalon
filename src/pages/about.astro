@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleHero from '../components/ArticleHero.astro';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Sola Hair Salon',
+};
+---
+<Layout
+  title="About | Sola Hair Salon"
+  description="Learn about Sola Hair Salon, our editorial approach, and our independence from Sola Salon Studios."
+  canonicalPath="/about/"
+  schema={schema}
+>
+  <ArticleHero eyebrow="About" title="About Sola Hair Salon" image="/images/gallery/gallery-education-event.jpg" imageAlt="Salon education and training event" />
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Sola Hair Salon is an independent, editorially run resource covering the
+      salon-studio model, hair services, hairstyles, hair care and salon pricing. Our
+      goal is to give people clear, practical information before they book an
+      appointment — nothing more.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Why This Site Exists</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Searching for information about salon studios, salon pricing, or which
+      haircut suits a particular face shape tends to turn up either official
+      marketing pages or scattered, inconsistent forum advice. We started this
+      site to sit in between those two extremes: independent enough to be candid
+      about trade-offs and pricing realities, but organized and thorough enough to
+      actually answer the question you came with. Every guide is written to
+      answer one specific question completely, rather than padding out a topic
+      with filler to rank for a keyword.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Independence</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      We are not affiliated with, sponsored by, or endorsed by Sola Salon Studios.
+      We reference the brand only to describe and inform, and we do not use Sola's
+      logos, trademarks, or official branding. Nothing on this site should be read
+      as an official statement from, or authorized directory of, Sola Salon
+      Studios or any specific location or professional working within that model.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">How We Approach the Free Tools</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Our Salon Cost Calculator and Hair Length Calculator are built to be
+      genuinely useful starting points, not lead-generation gimmicks. Both run
+      entirely in your browser — no account, no email capture, no data sent to a
+      server — and both are clearly labeled as estimates rather than exact quotes,
+      because that's what they actually are. We'd rather a tool underpromise and
+      be transparent about its limits than present a rough calculation as
+      something more precise than it is.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Editorial Principles</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-6">
+      <li>Every article is written or reviewed by a human before publishing.</li>
+      <li>We don't publish scraped, spun, or copied content.</li>
+      <li>We don't fabricate statistics, reviews, or professional credentials.</li>
+      <li>Factual claims are checked against reliable sources where relevant.</li>
+      <li>We don't run ads that interrupt reading, and we don't design pages primarily around advertising.</li>
+    </ul>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What We're Still Building</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      This site is actively growing — new guides are added regularly, following
+      the same questions people most often bring into a salon consultation.
+      If you've read something here that felt incomplete, outdated, or just
+      plain wrong, we genuinely want to hear about it and fix it, rather than let
+      it sit.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What Makes a Guide "Original" Here</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      We take "original content" seriously in a specific, practical sense: every
+      guide is written from scratch for this site, drawing on general, widely
+      understood knowledge about hair services and salon business practices
+      rather than being rewritten from any single competing source. Where a claim
+      needs a factual anchor beyond general knowledge, we aim to check it rather
+      than assume it's correct because it's commonly repeated elsewhere online.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">A Note on Advertising</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      This site may eventually carry advertising to help sustain the work of
+      researching and writing new guides, but ads are never allowed to determine
+      what we recommend or how we describe a service, technique, or pricing
+      range. If a page ever carries a sponsored placement, it will be clearly
+      labeled as such — nothing here is designed to look like independent advice
+      while secretly being paid promotion.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Who's Behind This Site</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Sola Hair Salon is run as a small, focused editorial project rather than a
+      large publication with a masthead of contributors. Content is researched,
+      written, and reviewed with an emphasis on accuracy and practical
+      usefulness over volume — we would rather publish twenty genuinely
+      thorough guides than two hundred thin ones. As the site grows, any named
+      contributors will be introduced here with their actual background, and we
+      won't claim credentials that aren't real.
+    </p>
+
+    <p class="text-ink/80 leading-relaxed">
+      Questions or corrections? Visit our <a href="/contact/" class="text-rose-600 underline">Contact page</a>.
+    </p>
+  </article>
+</Layout>

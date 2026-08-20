@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+// Static list of starter articles per the content roadmap.
+// Add new entries here as you publish real, human-reviewed posts.
+const posts = [
+  { title: 'How Much Does a Haircut Usually Cost?', href: '/tools/salon-cost-calculator/', desc: 'A breakdown of what drives salon pricing, with a free calculator.', image: '/images/gallery/gallery-salon-reception.jpg' },
+  { title: 'How to Choose a Haircut for Your Face Shape', href: '/hairstyles/by-face-shape/', desc: 'General guidance by face shape to bring into your consultation.', image: '/images/gallery/gallery-blonde-waves-2.jpg' },
+  { title: 'How Fast Does Hair Grow?', href: '/tools/hair-length-calculator/', desc: 'Average growth rates and how to estimate your own timeline.', image: '/images/gallery/gallery-blonde-waves-1.jpg' },
+  { title: 'Questions to Ask Your Hairstylist', href: '/sola-hair-salon/', desc: 'A checklist for your next consultation, especially at an independent studio.', image: '/images/gallery/gallery-private-studio-1.jpg' },
+  { title: 'Hair Care Basics for Beginners', href: '/hair-care/', desc: 'Start-from-zero guidance for building a simple, effective routine.', image: '/images/gallery/gallery-esthetics-room-1.jpg' },
+  { title: 'What Is a Sola Salon Studio?', href: '/sola-salon-studio/', desc: 'How the salon-suite model works and how to evaluate a professional.', image: '/images/gallery/gallery-private-studio-2.jpg' },
+];
+---
+<Layout
+  title="Blog | Hair, Salon & Styling Guides"
+  description="Original guides on hair care, salon services, pricing and styling."
+  canonicalPath="/blog/"
+>
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / Blog</p>
+    <h1 class="font-serif text-4xl font-bold mb-4">Blog</h1>
+    <p class="text-ink/70 mb-4 max-w-2xl">Original guides on hair care, salon services, pricing and styling.</p>
+    <p class="text-ink/70 mb-8 max-w-2xl leading-relaxed">
+      Everything here is written specifically for this site — no scraped or
+      spun content, no copied articles. Each guide is meant to answer one
+      question completely rather than pad out a topic with filler, and each is
+      reviewed and updated as the underlying information changes. Below is a
+      running list of what's published so far, organized loosely around the
+      questions people most often bring into a salon consultation: what
+      something costs, how to choose a style, how long hair takes to grow, and
+      how to build a hair care routine that actually works for your hair type.
+      New guides are added regularly as the site grows — if there's a topic
+      you'd like covered, our <a href="/contact/" class="text-rose-600 underline">contact page</a>
+      is the fastest way to send a suggestion.
+    </p>
+    <p class="text-ink/70 mb-8 max-w-2xl leading-relaxed">
+      We deliberately keep this list to genuinely useful, complete guides rather
+      than churning out a large volume of thin posts. If a topic doesn't warrant
+      its own full guide yet, it's usually folded into a related page instead of
+      published as a half-finished stub. As the site grows, expect this page to
+      fill in with more specific, narrower guides alongside the broader ones
+      already here — things like individual product breakdowns, deeper dives into
+      specific coloring techniques, and seasonal hair care advice.
+    </p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {posts.map((p) => (
+        <Card title={p.title} description={p.desc} href={p.href} image={p.image} imageAlt={p.title} />
+      ))}
+    </div>
+
+    <h2 class="font-serif text-2xl font-bold mt-12 mb-3">How Articles Get Chosen</h2>
+    <p class="text-ink/70 leading-relaxed mb-6">
+      Most of what's published here starts from a genuinely common question —
+      the kind of thing people search for right before or right after a salon
+      appointment. We try to prioritize topics where existing information online
+      is either thin, outdated, or written primarily to rank in search results
+      rather than to actually help the reader. If a good, thorough answer
+      already exists elsewhere, we're less likely to duplicate it just to have
+      more pages on the site.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Corrections and Updates</h2>
+    <p class="text-ink/70 leading-relaxed">
+      Hair services, pricing norms, and product categories all shift over time,
+      so older guides are periodically reviewed and updated rather than left
+      static once published. If you notice something that seems outdated or
+      incorrect, the fastest way to get it fixed is through our
+      <a href="/contact/" class="text-rose-600 underline">contact page</a> — corrections
+      are one of the most useful things a reader can send us.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What to Expect Next</h2>
+    <p class="text-ink/70 leading-relaxed">
+      New guides go up regularly, generally following the same pattern as the
+      site's other content: original writing, human review, and a focus on
+      genuinely answering the question rather than padding for length. If a
+      topic here interests you but feels incomplete, check back — it's likely
+      to get a fuller standalone treatment as the blog grows.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">No Sponsored Rankings</h2>
+    <p class="text-ink/70 leading-relaxed">
+      The order articles appear in reflects publish date and relevance, not
+      payment. We don't accept placement fees to feature a product, technique,
+      or service more prominently than the facts warrant, and any future
+      sponsored content will be clearly labeled as such rather than blended in
+      with our regular editorial guides.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Reading These Alongside the Free Tools</h2>
+    <p class="text-ink/70 leading-relaxed">
+      Several of these guides pair naturally with our
+      <a href="/tools/salon-cost-calculator/" class="text-rose-600 underline">Salon Cost Calculator</a>
+      and <a href="/tools/hair-length-calculator/" class="text-rose-600 underline">Hair Length Calculator</a> —
+      read the relevant guide first for context, then use the calculator to put
+      a rough number or timeline on the plan you've settled on.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Written for Readers, Not Search Engines</h2>
+    <p class="text-ink/70 leading-relaxed">
+      It's worth repeating: nothing here is written primarily to rank for a
+      keyword. Every post exists because it answers a real, specific question
+      thoroughly. If an article ever feels padded or vague, that's a sign
+      something has gone wrong, and it's exactly the kind of thing worth
+      flagging through our contact page so it can be fixed.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Suggest a Topic</h2>
+    <p class="text-ink/70 leading-relaxed">
+      Have a question this blog hasn't answered yet? That's usually the
+      strongest signal for what to write next. Send it through our
+      <a href="/contact/" class="text-rose-600 underline">contact page</a> and it may
+      show up as a full guide in a future update.
+    </p>
+  </section>
+</Layout>

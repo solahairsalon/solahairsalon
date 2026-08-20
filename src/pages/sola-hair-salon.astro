@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import ArticleHero from '../components/ArticleHero.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Sola Hair Salon',
+    description: 'Learn about Sola hair salons, salon studios, services, pricing and what to consider before booking your next hair appointment.',
+    author: { '@type': 'Person', name: 'Editorial Team' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://solahairsalon.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Sola Hair Salon', item: 'https://solahairsalon.com/sola-hair-salon/' },
+    ],
+  },
+];
+---
+<Layout
+  title="Sola Hair Salon: Services, Studios, Pricing & More"
+  description="Learn about Sola hair salons, salon studios, services, pricing and what to consider before booking your next hair appointment."
+  canonicalPath="/sola-hair-salon/"
+  schema={schema}
+>
+  <ArticleHero
+    eyebrow="Sola Salon Studios Guide"
+    title="Sola Hair Salon"
+    image="/images/gallery/gallery-salon-reception.jpg"
+    imageAlt="Bright, modern hair salon studio interior"
+  />
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 prose-like">
+    <p class="text-xs text-ink/50 mb-2">
+      <a href="/" class="hover:underline">Home</a> / Sola Hair Salon
+    </p>
+    <p class="text-sm text-ink/50 mb-8">Written by Editorial Team · Reviewed/Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Searching for a Sola hair salon usually means one thing: you've come across the
+      Sola Salon Studios concept and want to understand how it actually works before you
+      book. This guide covers what Sola Salon Studios is, how the salon-studio model
+      differs from a traditional salon, what to expect on pricing, and the questions
+      worth asking before your first visit.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">What Makes a Sola Salon Studio Different</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Instead of a single storefront staffed by employees, a Sola Salon Studios
+      location is a building divided into individual, fully equipped private studios.
+      Each studio is leased and run independently by a licensed beauty professional —
+      a hairstylist, colorist, esthetician, nail technician, or similar specialist. That
+      means the person you book with owns their schedule, their pricing, and their
+      client relationships directly, rather than working under one salon's shared
+      brand and price list.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">Sola Salon Studio vs. Traditional Salon</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      In a traditional salon, one business sets prices, schedules and policies for
+      every stylist under its roof. In the salon-studio model, every studio operates
+      as its own small business. Practically, this means pricing and availability can
+      vary a lot between two stylists in the same building, and you typically book
+      directly with the individual professional rather than through a central front
+      desk.
+    </p>
+
+    <AdSlot label="Pillar page — mid article" />
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">What to Expect on Pricing</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Because each professional sets their own rates, prices for the same service —
+      say, a haircut or a balayage — can differ meaningfully from one studio to the
+      next based on experience, location and demand. Our
+      <a href="/tools/salon-cost-calculator/" class="text-rose-600 underline">Salon Cost Calculator</a>
+      gives a rough, informational starting point, but always confirm pricing directly
+      with the stylist before booking.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">Questions Worth Asking Before You Book</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-6">
+      <li>What is your current price list for the service I want?</li>
+      <li>How long have you been licensed, and do you specialize in this service?</li>
+      <li>What is your cancellation or rescheduling policy?</li>
+      <li>Can you show examples of past work in this specific style or technique?</li>
+      <li>What products do you use, and are they suitable for my hair type?</li>
+    </ul>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">Why the Model Has Grown in Popularity</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Part of what's fueled interest in the salon-studio model is the flexibility it
+      offers professionals — the ability to set their own hours, choose their own
+      products and brands, and build a client relationship without the overhead
+      and structure of a traditional salon employer. For clients, that often
+      translates into more focused attention: appointments tend to run without the
+      interruptions of a shared, high-traffic salon floor, and many people find the
+      more private setting genuinely more relaxing than a busy open salon.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">What First-Time Visitors Often Ask</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      If you've only ever been to a traditional salon, a few things about the
+      studio model can feel unfamiliar at first. There's usually no shared
+      reception desk, so you'll typically be greeted by the professional
+      themselves at their studio door. Payment is handled directly with that
+      person rather than through a central register, and walk-ins are less common
+      than at a traditional salon since most studios operate by appointment only.
+      None of this is complicated once you know what to expect, but it's worth
+      knowing ahead of time so your first visit feels familiar rather than
+      confusing.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">Choosing Between the Salon-Studio Model and a Traditional Salon</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Neither model is objectively better — they suit different priorities. If
+      you value a highly personalized, one-on-one experience and are comfortable
+      doing a bit of research to find the right professional, the studio model
+      often delivers. If you'd rather walk into a single business with a house
+      style, standardized pricing, and the ability to see multiple stylists under
+      one roof, a traditional salon may suit you better. Many people end up using
+      both, depending on the specific service they need at a given time.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-10 mb-3">Related Guides</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-10">
+      <li><a href="/sola-salon-studio/" class="text-rose-600 underline">What Is a Sola Salon Studio?</a></li>
+      <li><a href="/sola-salons/" class="text-rose-600 underline">Understanding Sola Salons</a></li>
+      <li><a href="/sola-salon-studios-near-me/" class="text-rose-600 underline">Finding Sola Salon Studios Near You</a></li>
+      <li><a href="/tools/salon-cost-calculator/" class="text-rose-600 underline">Salon Cost Calculator</a></li>
+    </ul>
+
+    <p class="text-xs text-ink/50 border-t border-sand pt-4">
+      Independent informational resource. Not affiliated with, sponsored by, or
+      endorsed by Sola Salon Studios.
+    </p>
+  </article>
+</Layout>

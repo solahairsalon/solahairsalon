@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+---
+<Layout
+  title="Hair & Salon Calculators | Free Tools"
+  description="Free, privacy-respecting calculators for salon cost estimates and hair growth planning."
+  canonicalPath="/tools/"
+>
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / Tools</p>
+    <h1 class="font-serif text-4xl font-bold mb-4">Tools</h1>
+    <p class="text-ink/70 mb-4 max-w-2xl">
+      Free calculators to help you plan a salon visit. Everything runs in your
+      browser — no accounts, no data collection, no stored inputs.
+    </p>
+    <p class="text-ink/70 mb-8 max-w-2xl leading-relaxed">
+      Planning ahead for a salon visit usually comes down to two questions: what
+      will it roughly cost, and how long will it take to reach the look you want.
+      Our two calculators are built to give quick, informational answers to those
+      questions before you ever pick up the phone to book. Neither tool sends your
+      inputs anywhere — the math happens entirely on your device, and nothing is
+      stored once you close the tab. Use them as a starting point for budgeting
+      and planning, then confirm exact pricing and timelines directly with your
+      stylist, since real quotes always depend on the specifics of your hair and
+      the professional you're working with.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-5">
+      <Card eyebrow="Free Tool" title="Salon Cost Calculator" description="Estimate a rough price range for common salon services based on your inputs." href="/tools/salon-cost-calculator/" />
+      <Card eyebrow="Free Tool" title="Hair Length Calculator" description="Estimate how long it will take to grow hair from your current to desired length." href="/tools/hair-length-calculator/" />
+    </div>
+  </section>
+</Layout>

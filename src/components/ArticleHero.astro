@@ -1,0 +1,29 @@
+---
+export interface Props {
+  eyebrow: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+}
+const { eyebrow, title, image, imageAlt } = Astro.props;
+---
+<section class="relative">
+  <div class="h-56 sm:h-72 w-full overflow-hidden">
+    <img
+      src={image}
+      alt={imageAlt}
+      width="1600"
+      height="500"
+      loading="eager"
+      decoding="async"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
+  </div>
+  <div class="absolute inset-x-0 bottom-0">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+      <span class="text-xs font-semibold uppercase tracking-wide text-rose-300">{eyebrow}</span>
+      <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-white mt-1">{title}</h1>
+    </div>
+  </div>
+</section>

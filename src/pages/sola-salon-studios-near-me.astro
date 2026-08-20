@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleHero from '../components/ArticleHero.astro';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Sola Salon Studios Near Me: How to Find One',
+};
+---
+<Layout
+  title="Sola Salon Studios Near Me: How to Find One"
+  description="Practical, privacy-respecting ways to find a salon studio near you, including manual city or ZIP code search."
+  canonicalPath="/sola-salon-studios-near-me/"
+  schema={schema}
+>
+  <ArticleHero eyebrow="Locator" title="Sola Salon Studios Near Me" image="/images/gallery/gallery-blonde-waves-2.jpg" imageAlt="Client with a finished hairstyle" />
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / Sola Salon Studios Near Me</p>
+
+    <p class="text-ink/80 leading-relaxed mb-8">
+      We don't run a private location database, but here's a fast, privacy-friendly
+      way to search on your own terms — either by typing your city/ZIP code, or by
+      sharing your location with your browser only if you choose to.
+    </p>
+
+    <div class="border border-sand rounded-xl2 bg-white p-6 mb-10">
+      <h2 class="font-serif text-xl font-semibold mb-4">Search by City or ZIP Code</h2>
+      <form id="near-me-form" class="flex flex-col sm:flex-row gap-3">
+        <label for="location-input" class="sr-only">City or ZIP code</label>
+        <input
+          id="location-input"
+          type="text"
+          placeholder="e.g. Austin, TX or 78701"
+          class="flex-1 rounded-lg border border-sand px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+        />
+        <button type="submit" class="rounded-lg bg-rose-500 text-white font-medium px-6 py-3 hover:bg-rose-600 transition-colors">
+          Search
+        </button>
+      </form>
+
+      <button
+        id="use-location-btn"
+        type="button"
+        class="mt-4 text-sm text-rose-600 underline"
+      >
+        Or use my current location instead
+      </button>
+      <p class="text-xs text-ink/50 mt-2">
+        We'll only access your location if you click the button above and approve
+        your browser's permission prompt. Nothing is stored on our end — the search
+        happens entirely in your browser.
+      </p>
+      <p id="near-me-result" class="text-sm mt-4"></p>
+    </div>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Tips for a Better Search</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-8">
+      <li>Search "salon studios near [your city]" alongside the specific service you want.</li>
+      <li>Check individual stylists' social media for portfolio photos before booking.</li>
+      <li>Call or message ahead to confirm current pricing and availability.</li>
+      <li>Read our <a href="/sola-salon-studio/" class="text-rose-600 underline">salon studio guide</a> so you know what questions to ask.</li>
+    </ul>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What to Check Once You've Found a Few Options</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      A map search will show you locations, but it won't tell you much about the
+      individual professionals working there. Once you've narrowed down a
+      building or two, the next step is researching who actually works in that
+      location — most independent stylists maintain their own Instagram or
+      booking page separate from the location's general listing. Look specifically
+      for recent work in the style or technique you want, rather than judging
+      based on the location's overall star rating, which blends reviews for many
+      different professionals.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Booking Your First Appointment</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Most independent professionals in the salon-studio model handle their own
+      booking, often through a texting service, an online booking page, or a
+      direct phone call rather than a shared front desk. When you reach out for
+      the first time, it helps to be specific: mention the service you want, roughly
+      how long your hair is, and any reference photos you have. This lets the
+      professional give you an accurate time estimate and price range before you
+      even arrive, rather than discovering a mismatch once you're in the chair.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What If There Isn't One Nearby?</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Salon-suite locations aren't in every city, and even where they exist,
+      availability for a specific service or specialty can be limited. If a search
+      doesn't turn up a good match, broadening your radius slightly, checking
+      neighboring towns, or searching for the service itself ("balayage near me")
+      rather than the business model by name often surfaces more options. A great
+      independent stylist working outside the salon-studio model can be just as
+      good a fit as one working inside it — the model itself is a business
+      structure, not a guarantee of quality.
+    </p>
+
+    <p class="text-xs text-ink/50 border-t border-sand pt-4">
+      Independent informational resource. Not affiliated with, sponsored by, or
+      endorsed by Sola Salon Studios. Search results link to third-party map
+      providers; we do not maintain our own location directory.
+    </p>
+  </article>
+
+  <script>
+    const form = document.getElementById('near-me-form') as HTMLFormElement | null;
+    const input = document.getElementById('location-input') as HTMLInputElement | null;
+    const result = document.getElementById('near-me-result');
+    const useLocationBtn = document.getElementById('use-location-btn');
+
+    function openMapSearch(query: string) {
+      const url = `https://www.google.com/maps/search/${encodeURIComponent('salon studios near ' + query)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const value = input?.value.trim();
+      if (!value) {
+        if (result) result.textContent = 'Please enter a city or ZIP code.';
+        return;
+      }
+      if (result) result.textContent = `Opening a map search for "${value}"…`;
+      openMapSearch(value);
+    });
+
+    useLocationBtn?.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        if (result) result.textContent = 'Geolocation is not supported in this browser.';
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          const url = `https://www.google.com/maps/search/salon+studios/@${latitude},${longitude},13z`;
+          if (result) result.textContent = 'Opening a map search near your current location…';
+          window.open(url, '_blank', 'noopener,noreferrer');
+        },
+        () => {
+          if (result) result.textContent = 'Location permission was denied. You can still search by city or ZIP above.';
+        }
+      );
+    });
+  </script>
+</Layout>

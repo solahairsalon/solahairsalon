@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleHero from '../components/ArticleHero.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'What Is a Sola Salon Studio?',
+  description: 'How a salon studio works, what services are commonly offered, and how to evaluate a professional before booking.',
+};
+---
+<Layout
+  title="What Is a Sola Salon Studio? A Practical Guide"
+  description="How a salon studio works, what services are commonly offered, and how to evaluate a professional before booking."
+  canonicalPath="/sola-salon-studio/"
+  schema={schema}
+>
+  <ArticleHero eyebrow="Sola Salon Studios Guide" title="What Is a Sola Salon Studio?" image="/images/gallery/gallery-private-studio-1.jpg" imageAlt="Private salon studio chair and mirror" />
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / Sola Salon Studio</p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">How a Salon Studio Operates</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      A salon studio is a private, fully equipped room leased by an individual beauty
+      professional inside a larger building of similar studios. The professional
+      controls their own hours, pricing and client list, and typically decorates and
+      stocks the space themselves. Clients book appointments directly with that
+      person rather than through a shared salon receptionist.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Services Commonly Offered</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-6">
+      <li>Haircuts and styling</li>
+      <li>Color services, including highlights and balayage</li>
+      <li>Hair treatments and smoothing services</li>
+      <li>Extensions</li>
+      <li>Some studios also offer skin care, nails, or barbering</li>
+    </ul>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Benefits and Considerations</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Salon studios often mean more one-on-one time with your stylist and a more
+      personalized environment. The trade-off is that you're evaluating one
+      professional directly rather than relying on a salon's overall reputation, so a
+      bit more research up front pays off.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">What a First Visit Usually Looks Like</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Because each studio is its own small business, the check-in process is
+      usually simpler than a traditional salon — there's often no shared waiting
+      area or front desk, and you'll typically message or call the professional
+      directly to confirm your appointment time. Arriving a few minutes early is
+      still a good habit, since studios are private spaces and the professional may
+      be finishing with a previous client. Payment methods, cancellation policies,
+      and even whether walk-ins are accepted all vary studio by studio, so it's
+      worth confirming those details when you book rather than assuming they match
+      what you're used to elsewhere.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">How Pricing Actually Gets Set</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Unlike a traditional salon with one posted price list for every stylist,
+      each studio professional sets their own rates based on their experience,
+      training, location, and demand. Someone early in their career might charge
+      noticeably less than a stylist who has built a loyal client base over many
+      years, even for the identical service in the same building. This is normal
+      within the model and not a red flag on its own — but it does mean price
+      alone isn't a reliable way to judge quality, and it's worth asking what's
+      included (consultation, styling, aftercare advice) rather than comparing
+      numbers in isolation.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">How to Evaluate a Salon Professional</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/80 mb-8">
+      <li>Check their portfolio or social media for recent, relevant work</li>
+      <li>Confirm their license is current in your state</li>
+      <li>Read independent reviews where available</li>
+      <li>Ask about consultation policy before a big change (e.g., major color correction)</li>
+      <li>Ask how they handle a result you're not fully happy with</li>
+    </ul>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Building an Ongoing Relationship</h2>
+    <p class="text-ink/80 leading-relaxed mb-8">
+      One advantage of the studio model that's easy to overlook: because you're
+      booking directly with the same person every time, it's often easier to build
+      continuity than at a larger salon where availability and staff can shift.
+      Once you find a professional whose work you trust, keeping notes on what
+      they've done for you — formulas, cut specifications, products used — makes
+      each future visit smoother, since that history lives with the same person
+      rather than being spread across a rotating staff.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">If Something Doesn't Go as Planned</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Even with careful research, results occasionally don't match expectations.
+      Ask about a professional's policy on adjustments before you book, not
+      after — most reasonable professionals will offer a follow-up appointment
+      to fix a minor issue at little or no extra cost, but that policy varies
+      person to person, and it's much easier to ask upfront than to negotiate
+      after the fact.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Making the Most of the Model</h2>
+    <p class="text-ink/80 leading-relaxed mb-8">
+      The salon-studio model rewards a bit of upfront research with a more
+      personal, consistent experience over time. Treat the first visit as an
+      evaluation, not a lifelong commitment, and don't be afraid to try a
+      different studio if the first one isn't quite the right fit.
+    </p>
+
+    <p class="text-ink/80 leading-relaxed mb-8">
+      For a broader overview, see our <a href="/sola-hair-salon/" class="text-rose-600 underline">Sola Hair Salon</a>,
+      or jump to the <a href="/tools/salon-cost-calculator/" class="text-rose-600 underline">Salon Cost Calculator</a>
+      to estimate pricing.
+    </p>
+
+    <p class="text-xs text-ink/50 border-t border-sand pt-4">
+      Independent informational resource. Not affiliated with, sponsored by, or
+      endorsed by Sola Salon Studios.
+    </p>
+  </article>
+</Layout>

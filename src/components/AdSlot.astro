@@ -1,0 +1,14 @@
+---
+// Placeholder ad slot. Intentionally renders nothing visible/no scripts until
+// the site is AdSense-approved. Flip ENABLED to true and paste the real
+// AdSense unit once monetization is switched on. Never loads ad scripts
+// during initial content-building/review phase.
+const ENABLED = false;
+export interface Props {
+  label?: string;
+}
+const { label = 'Advertisement' } = Astro.props;
+---
+{ENABLED ? (
+  <div class="my-8 text-center text-xs text-ink/40">{label} slot (AdSense script goes here)</div>
+) : null}

@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Sola Hair Salon',
+  url: 'https://solahairsalon.com/',
+};
+
+const faqs = [
+  {
+    q: 'What is a Sola Salon Studio?',
+    a: 'Sola Salon Studios is a salon-suite concept where independent beauty professionals rent their own private studio space rather than working as employees of a traditional salon.',
+  },
+  {
+    q: 'How are salon studio services typically priced?',
+    a: 'Pricing is set individually by each independent professional, so it varies by stylist experience, location, and the specific service performed rather than a single company-wide price list.',
+  },
+  {
+    q: 'How can I find a salon studio near me?',
+    a: 'You can search by city or ZIP code, browse studio directories, or ask for referrals. Our near-me guide walks through practical ways to search.',
+  },
+  {
+    q: 'How much should I budget for a haircut?',
+    a: 'Costs vary widely by region and stylist experience. Use our Salon Cost Calculator for a rough, informational estimate before you book.',
+  },
+];
+
+const img = (id: string, w = 800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=70`;
+const CHAIR = 'photo-1703792686756-c82bf734c89b';
+const CURLY = 'photo-1738739905613-590d01442686';
+
+// Real, locally-hosted photos of Sola-style private studios (provided assets,
+// resized/compressed for the web — see public/images/gallery/).
+const gallery = [
+  { src: '/images/gallery/gallery-private-studio-2.jpg', alt: 'Colorful, plant-filled private salon studio with black shampoo bowl' },
+  { src: '/images/gallery/gallery-private-studio-1.jpg', alt: 'Minimalist private studio with styling chair and wood cabinetry' },
+  { src: '/images/gallery/gallery-mens-fade-collage.jpg', alt: 'Barber studio and a finished fade haircut' },
+  { src: '/images/gallery/gallery-private-studio-3.jpg', alt: 'Eclectic, personalized private studio with folk-art decor' },
+  { src: '/images/gallery/gallery-blonde-waves-1.jpg', alt: 'Long blonde balayage waves, finished styling result' },
+  { src: '/images/gallery/gallery-esthetics-room-1.jpg', alt: 'Private esthetics treatment room with sunburst wall art' },
+];
+---
+<Layout
+  title="Sola Hair Salon | Studios, Services, Styles & Pricing"
+  description="Independent guides to Sola hair salons and salon studios, hair services, hairstyle ideas, pricing tips and free salon calculators."
+  canonicalPath="/"
+  schema={schema}
+>
+  <!-- Hero: full-screen autoplay video background -->
+  <section class="relative overflow-hidden h-screen min-h-[640px] flex items-end">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/images/gallery/studio-tour-poster.jpg"
+      class="absolute inset-0 w-full h-full object-cover"
+    >
+      <source src="/video/studio-tour.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0a08] via-[#0b0a08]/70 to-[#0b0a08]/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0b0a08]/80 via-transparent to-transparent"></div>
+
+    <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
+      <div class="max-w-2xl rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 sm:p-10 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.7)]">
+        <p class="text-rose-300 text-sm font-medium tracking-wide uppercase mb-4">Independent Sola Salon Studios resource</p>
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold leading-[1.05] text-white">
+          Sola Hair Salon, decoded before you book.
+        </h1>
+        <p class="mt-6 text-lg text-white/80 leading-relaxed">
+          Everything you need to understand the Sola Salon Studios model — how it
+          works, what it costs, and how to pick the right stylist — plus free
+          calculators to plan your visit.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href="/sola-hair-salon/" class="px-6 py-3.5 rounded-full bg-rose-500 text-white font-medium hover:bg-rose-400 transition-all hover:-translate-y-0.5 shadow-[0_10px_30px_-8px_rgba(168,80,58,0.7)]">
+            Explore Sola Salon Studios
+          </a>
+          <a href="/tools/salon-cost-calculator/" class="px-6 py-3.5 rounded-full bg-white/10 text-white border border-white/30 backdrop-blur font-medium hover:bg-white/20 transition-all hover:-translate-y-0.5">
+            Calculate Salon Cost
+          </a>
+        </div>
+        <p class="mt-8 text-xs text-white/50 max-w-md">
+          Independent informational resource. Not affiliated with, sponsored by, or
+          endorsed by Sola Salon Studios.
+        </p>
+      </div>
+    </div>
+
+    <a href="#main-start" aria-label="Scroll down" class="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border border-white/30 items-center justify-center text-white/70 hover:text-white hover:border-white/60 transition-colors animate-bounce">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+    </a>
+  </section>
+
+  <div id="main-start"></div>
+
+  <!-- Stats strip -->
+  <section class="bg-ink text-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="font-serif text-2xl sm:text-3xl font-semibold text-white">20+</p>
+        <p class="text-xs sm:text-sm text-cream/60 mt-1">Original guides &amp; growing</p>
+      </div>
+      <div>
+        <p class="font-serif text-2xl sm:text-3xl font-semibold text-white">2</p>
+        <p class="text-xs sm:text-sm text-cream/60 mt-1">Free planning calculators</p>
+      </div>
+      <div>
+        <p class="font-serif text-2xl sm:text-3xl font-semibold text-white">$0</p>
+        <p class="text-xs sm:text-sm text-cream/60 mt-1">No accounts, no data stored</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Sola Salon Studios -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="text-xs font-semibold uppercase tracking-wide text-rose-500">Start here</span>
+      <h2 class="font-serif text-3xl font-semibold mt-2 mb-4">What Is Sola Salon Studios?</h2>
+      <p class="text-ink/75 leading-relaxed">
+        Sola Salon Studios is a well-known salon-suite business model built around
+        individual, fully private studios that independent hair, skin, and beauty
+        professionals lease and run as their own small businesses. That structure
+        changes how pricing, scheduling, and specialties work compared to a
+        traditional full-service salon — details we break down across this guide.
+      </p>
+      <p class="text-ink/75 leading-relaxed mt-4">
+        This site exists to make that model easier to navigate before you book —
+        covering what to expect, how pricing actually works, and how to evaluate
+        an independent professional with confidence.
+      </p>
+      <a href="/sola-hair-salon/" class="inline-flex items-center gap-1.5 mt-6 text-rose-600 font-medium">
+        Read the full guide
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+    <div class="rounded-xl2 overflow-hidden shadow-soft aspect-[4/3]">
+      <img src={img(CHAIR, 900)} alt="Private salon studio with styling chair and mirror" width="900" height="675" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+    </div>
+  </section>
+
+  <AdSlot label="Homepage — after intro" />
+
+  <!-- Real studio gallery -->
+  <section class="bg-white dark:bg-white/5 border-y border-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-2xl mb-8">
+        <span class="text-xs font-semibold uppercase tracking-wide text-rose-500">Real spaces</span>
+        <h2 class="font-serif text-3xl font-semibold mt-2 mb-3">Every Studio Looks Different</h2>
+        <p class="text-ink/70 leading-relaxed">
+          That's the point of the salon-studio model — each professional designs
+          and runs their own space. A few real examples of the range you'll find,
+          from minimalist to maximalist.
+        </p>
+        <p class="text-ink/70 leading-relaxed mt-3">
+          There's no single "look" you should expect walking in, which is part
+          of why researching the specific professional matters more here than
+          the location's general reputation.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        {gallery.map((g, i) => (
+          <div class={`rounded-xl2 overflow-hidden shadow-soft ${i === 0 ? 'col-span-2 row-span-2 aspect-square sm:aspect-[4/3]' : 'aspect-square'}`}>
+            <img
+              src={g.src}
+              alt={g.alt}
+              width="600"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Sola Salon Topics -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="font-serif text-3xl font-semibold mb-8">Explore Sola Salon Topics</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Card eyebrow="Guide" title="Sola Hair Salon" description="Start here: an overview of Sola Salon Studios, how it works, and what to expect." href="/sola-hair-salon/" image="/images/gallery/gallery-salon-reception.jpg" imageAlt="Modern salon studio interior" />
+      <Card eyebrow="Guide" title="Sola Salon Studio" description="How an individual studio operates and what questions to ask before booking." href="/sola-salon-studio/" image="/images/gallery/gallery-private-studio-1.jpg" imageAlt="Salon studio chair and mirror" />
+      <Card eyebrow="Guide" title="Sola Salons" description="Understanding the network of independent professionals across locations." href="/sola-salons/" image="/images/gallery/gallery-private-studio-3.jpg" imageAlt="Independent stylist's private studio" />
+      <Card eyebrow="Locator" title="Sola Salon Studios Near Me" description="Practical, privacy-respecting ways to search for a studio in your area." href="/sola-salon-studios-near-me/" />
+      <Card eyebrow="Services" title="Salon Services" description="Haircuts, color, styling, treatments, extensions and bridal hair, explained." href="/hair-services/" image={img(CURLY, 700)} imageAlt="Client with styled curly hair" />
+      <Card eyebrow="Pricing" title="Salon Pricing" description="What drives salon pricing, and how to budget for your next appointment." href="/tools/salon-cost-calculator/" />
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="bg-white border-y border-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex items-end justify-between mb-8 flex-wrap gap-3">
+        <h2 class="font-serif text-3xl font-semibold">Free Interactive Tools</h2>
+        <a href="/tools/" class="text-sm font-medium text-rose-600">View all tools →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="/tools/salon-cost-calculator/" class="group rounded-xl2 bg-rose-600 text-white p-8 hover:bg-rose-500 transition-colors shadow-soft">
+          <span class="text-xs font-semibold uppercase tracking-wide text-white/70">Free tool</span>
+          <h3 class="font-serif text-2xl font-semibold mt-2 mb-3">Salon Cost Calculator</h3>
+          <p class="text-white/80 text-sm leading-relaxed">Estimate a rough price range for common salon services based on your inputs.</p>
+          <span class="inline-flex items-center gap-1.5 mt-6 text-sm font-medium">Try it now <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></span>
+        </a>
+        <a href="/tools/hair-length-calculator/" class="group rounded-xl2 bg-ink text-white p-8 hover:bg-ink/90 transition-colors shadow-soft">
+          <span class="text-xs font-semibold uppercase tracking-wide text-white/60">Free tool</span>
+          <h3 class="font-serif text-2xl font-semibold mt-2 mb-3">Hair Length Calculator</h3>
+          <p class="text-white/75 text-sm leading-relaxed">Estimate how long it will take to grow hair from your current to desired length.</p>
+          <span class="inline-flex items-center gap-1.5 mt-6 text-sm font-medium">Try it now <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hair Services -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="font-serif text-3xl font-semibold mb-8">Hair Services</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Card title="Haircuts" description="Types of haircuts and how to choose one for your face shape and hair type." href="/hair-services/haircuts/" image="/images/gallery/gallery-mens-fade-collage.jpg" imageAlt="Finished fade haircut, front and side views" />
+      <Card title="Hair Coloring" description="Single-process color, highlights, balayage, ombre and upkeep basics." href="/hair-services/hair-coloring/" image="/images/gallery/gallery-blonde-waves-1.jpg" imageAlt="Long blonde balayage color result" />
+      <Card title="Hair Styling" description="Blowouts, updos and everyday styling techniques worth knowing." href="/hair-services/hair-styling/" />
+      <Card title="Hair Treatments" description="Conditioning, smoothing, and deep-treatment options explained." href="/hair-services/hair-treatments/" />
+      <Card title="Hair Extensions" description="Common extension methods, upkeep, and what to ask your stylist." href="/hair-services/hair-extensions/" />
+      <Card title="Bridal Hair" description="Planning timeline and questions for wedding-day hair." href="/hair-services/bridal-hair/" />
+    </div>
+  </section>
+
+  <AdSlot label="Homepage — before FAQ" />
+
+  <!-- Hairstyle Guides -->
+  <section class="bg-sand/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="font-serif text-3xl font-semibold mb-8">Hairstyle Guides</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card title="By Face Shape" description="Find flattering cuts for oval, round, square, heart and more." href="/hairstyles/by-face-shape/" image="/images/gallery/gallery-blonde-waves-2.jpg" imageAlt="Hairstyle framing the face" />
+        <Card title="By Hair Length" description="Short, medium and long hairstyle ideas and upkeep tips." href="/hairstyles/" />
+        <Card title="Men's Hairstyles" description="Popular men's cuts and how to talk to your barber or stylist." href="/hairstyles/mens-hairstyles/" image="/images/gallery/gallery-private-studio-1.jpg" imageAlt="Barbershop-style studio chair" />
+        <Card title="Women's Hairstyles" description="Trending and timeless women's hairstyle ideas." href="/hairstyles/womens-hairstyles/" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Hair Care -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="font-serif text-3xl font-semibold mb-8">Hair Care Guides</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Card title="Hair Care Basics" description="Build a simple, effective hair-care routine from scratch." href="/hair-care/" />
+      <Card title="Curly Hair Care" description="Moisture, definition and routine tips for curly hair." href="/hair-care/curly-hair/" image={img(CURLY, 700)} imageAlt="Curly hair close-up" />
+      <Card title="Colored Hair Care" description="How to keep color vibrant between salon visits." href="/hair-care/hair-coloring-care/" />
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="font-serif text-3xl font-semibold mb-3">Frequently Asked Questions</h2>
+    <p class="text-ink/70 leading-relaxed mb-8 max-w-2xl">
+      The questions below come up most often from people researching the
+      salon-studio model for the first time. Each links to a fuller guide if
+      you want more detail than the short answer here provides.
+    </p>
+    <div class="space-y-3">
+      {faqs.map((f) => (
+        <details class="group border border-sand rounded-xl2 bg-white p-5 open:shadow-soft transition-shadow">
+          <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
+            {f.q}
+            <span class="shrink-0 w-6 h-6 rounded-full bg-sand flex items-center justify-center text-rose-600 group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm text-ink/70 leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="rounded-xl2 bg-ink text-white px-8 py-14 text-center relative overflow-hidden">
+      <div class="relative">
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold mb-4">Planning a salon visit?</h2>
+        <p class="text-cream/70 max-w-lg mx-auto mb-8">Get a quick price estimate and know what to ask before you book with an independent Sola stylist.</p>
+        <a href="/tools/salon-cost-calculator/" class="inline-block px-7 py-3.5 rounded-full bg-rose-500 hover:bg-rose-400 transition-colors font-medium">
+          Try the Salon Cost Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

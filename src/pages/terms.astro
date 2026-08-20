@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Terms & Conditions | Sola Hair Salon"
+  description="Terms and conditions for using Sola Hair Salon."
+  canonicalPath="/terms/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h1 class="font-serif text-4xl font-bold mb-6">Terms &amp; Conditions</h1>
+    <p class="text-ink/60 text-sm mb-6">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Use of This Site</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Content on this site is provided for general informational purposes only and
+      does not constitute professional, medical, or financial advice. Salon pricing
+      shown by our calculators is an estimate, not a quote.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">No Affiliation</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      This site is independently operated and is not affiliated with, sponsored by,
+      or endorsed by Sola Salon Studios or any individual studio or professional
+      mentioned or linked from this site.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Intellectual Property</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Original content on this site is owned by Sola Hair Salon. Third-party
+      trademarks referenced here belong to their respective owners and are used only
+      to identify the subject matter of our content.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Limitation of Liability</h2>
+    <p class="text-ink/80 leading-relaxed">
+      We make reasonable efforts to keep information accurate but make no guarantees
+      about completeness or fitness for a particular purpose. Use of this site is at
+      your own risk.
+    </p>
+  </article>
+</Layout>

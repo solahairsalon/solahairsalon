@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Salon Cost Calculator',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (Web)',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Salon Cost Calculator | Estimate Your Haircut & Color Price"
+  description="Estimate the potential cost of common salon services based on hair length, services selected, and location."
+  canonicalPath="/tools/salon-cost-calculator/"
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / <a href="/tools/" class="hover:underline">Tools</a> / Salon Cost Calculator</p>
+    <h1 class="font-serif text-4xl font-bold mb-4">Salon Cost Calculator</h1>
+    <p class="text-ink/70 mb-8 leading-relaxed">
+      Get a rough, informational estimate of what a salon visit might cost based on
+      your hair length and the services you're considering.
+    </p>
+
+    <form id="cost-form" class="border border-sand rounded-xl2 bg-white p-6 space-y-6">
+      <div>
+        <label class="block text-sm font-medium mb-2">Hair length</label>
+        <select id="hair-length" class="w-full rounded-lg border border-sand px-3 py-2 text-sm">
+          <option value="short">Short</option>
+          <option value="medium" selected>Medium</option>
+          <option value="long">Long</option>
+          <option value="extra-long">Extra Long</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2">Salon type</label>
+        <select id="salon-type" class="w-full rounded-lg border border-sand px-3 py-2 text-sm">
+          <option value="budget">Budget-friendly</option>
+          <option value="mid" selected>Mid-range / independent studio</option>
+          <option value="premium">Premium / high-demand stylist</option>
+        </select>
+      </div>
+
+      <div>
+        <span class="block text-sm font-medium mb-2">Services</span>
+        <div class="grid sm:grid-cols-2 gap-2 text-sm">
+          <label class="flex items-center gap-2"><input type="checkbox" value="haircut" class="service-cb" checked /> Haircut</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="wash" class="service-cb" /> Hair Wash</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="blowdry" class="service-cb" /> Blow Dry</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="styling" class="service-cb" /> Hair Styling</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="color" class="service-cb" /> Hair Coloring</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="highlights" class="service-cb" /> Highlights</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="balayage" class="service-cb" /> Balayage</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="treatment" class="service-cb" /> Hair Treatment</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="extensions" class="service-cb" /> Hair Extensions</label>
+          <label class="flex items-center gap-2"><input type="checkbox" value="bridal" class="service-cb" /> Bridal Styling</label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2">Stylist experience</label>
+        <select id="stylist-exp" class="w-full rounded-lg border border-sand px-3 py-2 text-sm">
+          <option value="junior">Newer stylist</option>
+          <option value="mid" selected>Experienced stylist</option>
+          <option value="senior">Senior / master stylist</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full rounded-lg bg-rose-500 text-white font-medium py-3 hover:bg-rose-600 transition-colors">
+        Estimate Cost
+      </button>
+    </form>
+
+    <div id="cost-result" class="hidden mt-6 border border-sand rounded-xl2 bg-rose-50 p-6">
+      <h2 class="font-serif text-xl font-semibold mb-4">Estimated Salon Cost</h2>
+      <dl class="space-y-2 text-sm" id="cost-breakdown"></dl>
+      <p class="mt-4 font-semibold" id="cost-total"></p>
+      <p class="text-xs text-ink/60 mt-4">
+        This calculator provides an estimated price range for informational purposes
+        only. Actual salon prices vary by location, stylist, service complexity, hair
+        length, products and salon. These figures are not official Sola Salon Studios
+        prices.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-xl font-bold mt-12 mb-3">How This Estimate Works</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      The calculator combines a base price per service with adjustments for hair
+      length, salon tier and stylist experience to produce a plausible range — not an
+      exact quote. Always confirm final pricing with your stylist before booking.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Why Salon Prices Vary So Much</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      It's common to see the same service — a haircut, a set of highlights —
+      priced anywhere from $30 to $300 depending on where you look, and that range
+      isn't arbitrary. In the salon-studio model in particular, every independent
+      professional sets their own rates based on their training, years of
+      experience, the cost of the products they use, and how much demand they have
+      for their time. A newer stylist building a client base will typically charge
+      less than someone with a decade of experience and a long waitlist, even for
+      an identical service. Location also plays a real role — rent and cost of
+      living in a given city or neighborhood factor into what a professional needs
+      to charge to sustain their business.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">What the Inputs Actually Adjust</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      Hair length affects cost because longer hair simply takes more product and
+      more time to process, cut, or color evenly — a full head of foils on
+      waist-length hair uses substantially more product than the same service on
+      a chin-length bob. Salon tier reflects the general pricing bracket a
+      business operates in, from budget-friendly to premium. Stylist experience
+      captures the reality that more experienced professionals, particularly those
+      who specialize in a specific technique like color correction or curly
+      cutting, generally charge a premium for that expertise.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Getting the Most Accurate Estimate</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      For the most useful estimate, select every service you're actually
+      considering in the same visit rather than calculating them one at a time —
+      many salons offer a small discount for bundled services, so a combined
+      estimate here is closer to what a real multi-service quote might look like,
+      even though it doesn't account for that specific discount. If you're
+      planning a significant change, like going from dark to very light hair, keep
+      in mind that a responsible stylist may recommend spreading the service
+      across two or more appointments, which would roughly double the total cost
+      compared to what a single-visit estimate here suggests.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Using This Before You Call</h2>
+    <p class="text-ink/70 leading-relaxed text-sm">
+      Think of this tool as a way to set expectations before you reach out to a
+      stylist, not as a substitute for an actual quote. Most professionals are
+      happy to give a more precise price once they know your hair's current
+      condition and exact goal — this calculator just helps you walk into that
+      conversation with a realistic budget range already in mind.
+    </p>
+  </section>
+
+  <script>
+    type Service = { key: string; base: number; label: string };
+    const services: Service[] = [
+      { key: 'haircut', base: 45, label: 'Haircut' },
+      { key: 'wash', base: 10, label: 'Hair Wash' },
+      { key: 'blowdry', base: 30, label: 'Blow Dry' },
+      { key: 'styling', base: 40, label: 'Hair Styling' },
+      { key: 'color', base: 70, label: 'Hair Coloring' },
+      { key: 'highlights', base: 110, label: 'Highlights' },
+      { key: 'balayage', base: 150, label: 'Balayage' },
+      { key: 'treatment', base: 45, label: 'Hair Treatment' },
+      { key: 'extensions', base: 250, label: 'Hair Extensions' },
+      { key: 'bridal', base: 120, label: 'Bridal Styling' },
+    ];
+
+    const lengthMultiplier: Record<string, number> = {
+      short: 0.9,
+      medium: 1,
+      long: 1.2,
+      'extra-long': 1.4,
+    };
+    const salonMultiplier: Record<string, number> = { budget: 0.75, mid: 1, premium: 1.5 };
+    const expMultiplier: Record<string, number> = { junior: 0.8, mid: 1, senior: 1.35 };
+
+    const form = document.getElementById('cost-form') as HTMLFormElement;
+    const resultBox = document.getElementById('cost-result');
+    const breakdown = document.getElementById('cost-breakdown');
+    const totalEl = document.getElementById('cost-total');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const length = (document.getElementById('hair-length') as HTMLSelectElement).value;
+      const salonType = (document.getElementById('salon-type') as HTMLSelectElement).value;
+      const exp = (document.getElementById('stylist-exp') as HTMLSelectElement).value;
+      const selected = Array.from(document.querySelectorAll<HTMLInputElement>('.service-cb:checked')).map((el) => el.value);
+
+      if (selected.length === 0) {
+        alert('Please select at least one service.');
+        return;
+      }
+
+      const lm = lengthMultiplier[length] ?? 1;
+      const sm = salonMultiplier[salonType] ?? 1;
+      const em = expMultiplier[exp] ?? 1;
+
+      let subtotal = 0;
+      if (breakdown) breakdown.innerHTML = '';
+      selected.forEach((key) => {
+        const svc = services.find((s) => s.key === key);
+        if (!svc) return;
+        const price = svc.base * lm * sm * em;
+        subtotal += price;
+        if (breakdown) {
+          const row = document.createElement('div');
+          row.className = 'flex justify-between';
+          row.innerHTML = `<dt>${svc.label}</dt><dd>$${price.toFixed(0)}</dd>`;
+          breakdown.appendChild(row);
+        }
+      });
+
+      const low = Math.round(subtotal * 0.85);
+      const high = Math.round(subtotal * 1.15);
+
+      if (totalEl) totalEl.textContent = `Estimated Total: $${low}–$${high}`;
+      resultBox?.classList.remove('hidden');
+      resultBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</Layout>

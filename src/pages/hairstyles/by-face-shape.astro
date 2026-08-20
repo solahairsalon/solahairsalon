@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleHero from '../../components/ArticleHero.astro';
+const shapes = [
+  { name: 'Oval', tip: 'Considered the most versatile face shape for hairstyling — most lengths and cuts work well, since the goal is usually to preserve the balanced proportions rather than counteract them. Both blunt and layered cuts tend to suit an oval face.' },
+  { name: 'Round', tip: 'Styles with height at the crown and layers that elongate tend to balance roundness — think longer layers that start below the chin, or styles with volume on top rather than at the sides, which can widen the appearance of the face further.' },
+  { name: 'Square', tip: 'Soft layers around the jaw can ease strong, angular jawlines. Textured, wavy styles tend to soften the geometry more than sleek, blunt cuts, which can emphasize the jaw\'s sharp corners.' },
+  { name: 'Heart', tip: 'Styles with volume near the jaw balance a wider forehead and narrower chin. Side-swept bangs and chin-length layers are common recommendations, since they draw attention away from a broader upper face.' },
+  { name: 'Diamond', tip: 'Styles with width at the forehead or chin can balance prominent cheekbones. Side-swept fringe and styles with volume at the temples tend to soften the more angular cheekbone area.' },
+  { name: 'Oblong', tip: 'Waves or curls and side-swept bangs can help shorten the appearance of face length. Avoiding excessive height at the crown, and adding width through layers instead, tends to balance a longer face shape.' },
+];
+---
+<Layout
+  title="Hairstyles by Face Shape: Oval, Round, Square, Heart, Diamond, Oblong"
+  description="General hairstyle guidance for each major face shape, as a starting point for your stylist consultation."
+  canonicalPath="/hairstyles/by-face-shape/"
+>
+  <ArticleHero eyebrow="Hairstyle Ideas" title="Hairstyles by Face Shape" image="/images/gallery/gallery-blonde-waves-2.jpg" imageAlt="Hairstyle framing the face" />
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / <a href="/hairstyles/" class="hover:underline">Hairstyles</a> / By Face Shape</p>
+
+    <p class="text-ink/80 leading-relaxed mb-6">
+      "What haircut suits my face shape" is one of the most common questions people
+      bring into a salon consultation, and for good reason — the same haircut can
+      look completely different depending on the proportions of the face wearing
+      it. Face-shape guidance is a helpful starting point, not a strict rule — your
+      stylist will adapt any of these ideas to your specific features, hair
+      texture, and density, which matter just as much as face shape alone.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-6 mb-4">Figuring Out Your Face Shape</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Most face-shape systems are based on comparing the width of your forehead,
+      cheekbones, and jawline against the overall length of your face. Pulling your
+      hair fully back and looking straight into a mirror, rather than at an angle,
+      gives the clearest read. Many people are a blend of two shapes rather than a
+      perfect match to one — that's completely normal, and a good stylist will look
+      at the whole picture rather than forcing you into a single category.
+    </p>
+
+    <div class="space-y-6 mb-8">
+      {shapes.map((s) => (
+        <div class="border border-sand rounded-xl2 bg-white p-5">
+          <h2 class="font-serif text-xl font-semibold mb-2">{s.name} Face Shape</h2>
+          <p class="text-ink/70 text-sm leading-relaxed">{s.tip}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Why These Are Guidelines, Not Rules</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Face shape is only one factor among several that determine whether a
+      hairstyle works for you. Hair texture, density, growth pattern, and even how
+      you naturally part your hair all interact with face shape in ways a simple
+      chart can't capture. Someone with a round face and very thick, wavy hair may
+      get a completely different — and equally flattering — recommendation than
+      someone with a round face and fine, straight hair.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Bringing This Into a Consultation</h2>
+    <p class="text-ink/80 leading-relaxed mb-8">
+      The most useful way to use face-shape guidance is as a conversation starter,
+      not a final answer. Mention your face shape and what you're hoping to
+      achieve — more width, more length, a softer jawline — and let your stylist
+      translate that into a cut that also accounts for your hair's texture and how
+      much time you want to spend styling it day to day.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">The Role of Hair Part and Bangs</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Where you part your hair changes how much forehead and face width is
+      visible, which interacts with face shape more than people often realize.
+      A deep side part can visually narrow a wider forehead, while a center part
+      tends to elongate the face slightly. Bangs work the same way — full,
+      blunt bangs shorten the appearance of a longer face, while side-swept or
+      parted bangs are more neutral and tend to suit a wider range of shapes.
+      These are small adjustments, but they're often the easiest way to fine-tune
+      a style without changing the overall cut.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">When to Ignore the Chart Entirely</h2>
+    <p class="text-ink/80 leading-relaxed mb-8">
+      If a style you love doesn't technically "match" your face shape on paper,
+      that's not necessarily a reason to skip it. Face-shape charts are a
+      simplification, and plenty of people wear styles outside their supposed
+      category successfully because of how they carry themselves, how the style
+      is cut specifically for their features, or simply personal preference.
+      Confidence and fit in person often matter more than matching a diagram.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Face Shape and Glasses</h2>
+    <p class="text-ink/80 leading-relaxed mb-8">
+      If you wear glasses regularly, frame shape adds another layer worth
+      considering alongside hairstyle. Angular frames on an already angular face
+      shape, paired with a very structured haircut, can look like a lot of sharp
+      lines competing with each other — softer layers around the face sometimes
+      balance that combination better than an equally structured cut would.
+      It's a minor detail, but worth mentioning to your stylist if glasses are
+      part of your everyday look.
+    </p>
+
+    <p class="text-ink/80 leading-relaxed">
+      See also: <a href="/hair-services/haircuts/" class="text-rose-600 underline">Haircuts: A Practical Guide</a>.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">A Starting Point, Not a Final Word</h2>
+    <p class="text-ink/80 leading-relaxed">
+      Use this guide to walk into your next consultation with a vocabulary and
+      a rough direction, then let your stylist do what a chart can't — actually
+      look at your face, your hair, and your goals together in the room.
+    </p>
+  </article>
+</Layout>

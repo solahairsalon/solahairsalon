@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Privacy Policy | Sola Hair Salon"
+  description="How Sola Hair Salon handles data and privacy."
+  canonicalPath="/privacy-policy/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 prose-like">
+    <h1 class="font-serif text-4xl font-bold mb-6">Privacy Policy</h1>
+    <p class="text-ink/60 text-sm mb-6">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Overview</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      This site is a static, informational website. We aim to collect as little
+      personal data as possible.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Calculators</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Our Salon Cost Calculator and Hair Length Calculator run entirely in your
+      browser. Inputs you enter are not transmitted to or stored on our servers.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Location Data</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      Our "near me" search feature only accesses your device location if you
+      explicitly click the relevant button and approve your browser's permission
+      prompt. We do not store or transmit your precise location to our servers.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Cookies &amp; Analytics</h2>
+    <p class="text-ink/80 leading-relaxed mb-6">
+      We may use privacy-conscious analytics to understand aggregate traffic
+      patterns. If advertising (such as Google AdSense) is enabled in the future,
+      third-party vendors may use cookies to serve ads based on your visits to this
+      and other sites; you can control ad personalization through your browser and
+      Google's Ads Settings.
+    </p>
+
+    <h2 class="font-serif text-2xl font-bold mt-8 mb-3">Contact</h2>
+    <p class="text-ink/80 leading-relaxed">
+      Questions about this policy can be sent via our <a href="/contact/" class="text-rose-600 underline">Contact page</a>.
+    </p>
+  </article>
+</Layout>

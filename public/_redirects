@@ -1,0 +1,6 @@
+# Force the www subdomain to the canonical apex domain (matches astro.config's
+# `site` and every canonical/OG/sitemap URL in this project). Without this,
+# Cloudflare would happily serve identical content at both hosts if a visitor
+# ever adds the www custom domain, which Google can flag as duplicate,
+# non-canonical content instead of a clean redirect to the indexed URL.
+https://www.solahairsalon.com/* https://solahairsalon.com/:splat 301!

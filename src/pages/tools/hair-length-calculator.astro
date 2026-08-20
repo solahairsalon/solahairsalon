@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Hair Length Calculator',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (Web)',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Hair Length Calculator | How Long to Grow Your Hair"
+  description="Estimate how many months it will take to grow your hair from its current length to your goal length."
+  canonicalPath="/tools/hair-length-calculator/"
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs text-ink/50 mb-2"><a href="/" class="hover:underline">Home</a> / <a href="/tools/" class="hover:underline">Tools</a> / Hair Length Calculator</p>
+    <h1 class="font-serif text-4xl font-bold mb-4">Hair Length Calculator</h1>
+    <p class="text-ink/70 mb-8 leading-relaxed">
+      Enter your current and desired hair length to estimate how long it will take to
+      grow it out, based on an adjustable average monthly growth rate.
+    </p>
+
+    <form id="length-form" class="border border-sand rounded-xl2 bg-white p-6 space-y-6">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-2" for="current-length">Current length (inches)</label>
+          <input id="current-length" type="number" min="0" step="0.5" value="8" class="w-full rounded-lg border border-sand px-3 py-2 text-sm" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2" for="desired-length">Desired length (inches)</label>
+          <input id="desired-length" type="number" min="0" step="0.5" value="14" class="w-full rounded-lg border border-sand px-3 py-2 text-sm" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2" for="growth-rate">Average monthly growth (inches)</label>
+        <input id="growth-rate" type="number" min="0.1" step="0.05" value="0.5" class="w-full rounded-lg border border-sand px-3 py-2 text-sm" />
+        <p class="text-xs text-ink/50 mt-1">Typical average is about 0.5 inch per month — adjust if you know your own rate.</p>
+      </div>
+
+      <button type="submit" class="w-full rounded-lg bg-rose-500 text-white font-medium py-3 hover:bg-rose-600 transition-colors">
+        Calculate Growth Time
+      </button>
+    </form>
+
+    <div id="length-result" class="hidden mt-6 border border-sand rounded-xl2 bg-rose-50 p-6 text-sm space-y-2">
+      <h2 class="font-serif text-xl font-semibold mb-2">Estimated Growth</h2>
+      <p id="length-diff"></p>
+      <p id="length-months"></p>
+      <p id="length-weeks"></p>
+      <p class="text-xs text-ink/60 mt-4">
+        Hair growth varies between individuals based on genetics, health, hair care
+        routine and other factors. This calculator provides a general estimate and
+        should not be considered medical advice.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-xl font-bold mt-12 mb-3">How Hair Growth Actually Works</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      Hair grows from follicles in the scalp in a repeating cycle: an active
+      growth phase that can last several years, followed by a brief transitional
+      phase, and then a resting phase before the strand eventually sheds and a new
+      one begins growing in its place. At any given time, the vast majority of
+      your hair follicles are in the active growth phase, which is why hair
+      generally grows at a fairly steady, predictable rate over the course of
+      months — even though the exact rate varies from person to person.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Why the Default Rate Might Not Match You</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      Half an inch per month is a commonly cited average, but it's exactly that —
+      an average, not a universal constant. Genetics play the largest role in your
+      personal growth rate, but age, overall health, nutrition, and hormonal
+      factors all contribute too. Hair growth also tends to slow slightly with
+      age, and can be temporarily affected by significant stress, illness, or
+      rapid changes in diet. If you've tracked your own hair growth over a few
+      months with photos or measurements, use that number instead of the default —
+      it will give you a far more accurate estimate than a generic average.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Why "Grown Length" Isn't Always What You See</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      One common source of frustration: hair can be growing at a completely normal
+      rate while still not appearing to get any longer, because breakage at the
+      ends is happening at roughly the same pace as new growth. If your hair
+      doesn't seem to be gaining length despite months of growth, the more likely
+      culprit is often breakage — from heat styling, chemical processing, or
+      friction — rather than a slow growth rate. Addressing breakage (see our
+      guide on <a href="/hair-care/dry-hair/" class="text-rose-600 underline">caring for dry hair</a>)
+      often does more for visible length than trying to speed up growth itself,
+      which is largely determined by genetics and not easily changed by products.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">Planning Around a Growing-Out Period</h2>
+    <p class="text-ink/70 leading-relaxed text-sm mb-6">
+      This calculator is especially useful if you're growing out a shorter cut, an
+      undercut, or bangs and want a realistic sense of when you'll hit a length
+      you're happy with — and, just as importantly, when to schedule shaping trims
+      along the way so the in-between stages look intentional rather than
+      awkward. Bring your target timeline into your next salon visit and ask your
+      stylist how they'd recommend trimming through the growing-out process.
+    </p>
+
+    <h2 class="font-serif text-xl font-bold mt-8 mb-3">A Note on Supplements and "Growth" Products</h2>
+    <p class="text-ink/70 leading-relaxed text-sm">
+      Plenty of products claim to speed up hair growth, but the underlying rate
+      hair grows from the follicle is largely determined by genetics and overall
+      health, not topical products. Some supplements may help if you have an
+      actual nutritional deficiency contributing to slower growth or shedding,
+      but that's a question for a doctor, not a marketing claim on a bottle. Use
+      this calculator with your natural rate — adjusted honestly based on your
+      own tracked history — rather than an optimistic number from a product
+      label.
+    </p>
+  </section>
+
+  <script>
+    const form = document.getElementById('length-form') as HTMLFormElement;
+    const resultBox = document.getElementById('length-result');
+    const diffEl = document.getElementById('length-diff');
+    const monthsEl = document.getElementById('length-months');
+    const weeksEl = document.getElementById('length-weeks');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const current = parseFloat((document.getElementById('current-length') as HTMLInputElement).value);
+      const desired = parseFloat((document.getElementById('desired-length') as HTMLInputElement).value);
+      const rate = parseFloat((document.getElementById('growth-rate') as HTMLInputElement).value);
+
+      if (isNaN(current) || isNaN(desired) || isNaN(rate) || rate <= 0) {
+        alert('Please enter valid numbers, with a growth rate greater than zero.');
+        return;
+      }
+
+      const diff = desired - current;
+      if (diffEl) {
+        diffEl.textContent = diff <= 0
+          ? `Your desired length (${desired}") is already at or shorter than your current length (${current}").`
+          : `Difference: ${diff.toFixed(1)} inches`;
+      }
+
+      if (diff > 0) {
+        const months = diff / rate;
+        if (monthsEl) monthsEl.textContent = `Estimated Time: approximately ${months.toFixed(1)} months`;
+        if (weeksEl) weeksEl.textContent = `That's roughly ${(months * 4.345).toFixed(0)} weeks`;
+      } else {
+        if (monthsEl) monthsEl.textContent = '';
+        if (weeksEl) weeksEl.textContent = '';
+      }
+
+      resultBox?.classList.remove('hidden');
+      resultBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</Layout>

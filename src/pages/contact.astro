@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Sola Hair Salon',
+};
+---
+<Layout
+  title="Contact | Sola Hair Salon"
+  description="Get in touch with the Sola Hair Salon editorial team — corrections, questions, or content suggestions welcome."
+  canonicalPath="/contact/"
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h1 class="font-serif text-4xl font-bold mb-4">Contact Us</h1>
+    <p class="text-ink/80 leading-relaxed mb-10">
+      Have a correction, question, or content suggestion? We'd like to hear from
+      you — send a message below or email us directly.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-8">
+      <form
+        id="contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        class="border border-sand rounded-xl2 bg-white dark:bg-ink/40 dark:border-white/10 p-6 space-y-4"
+      >
+        <div>
+          <label for="name" class="block text-sm font-medium mb-1.5">Name</label>
+          <input id="name" name="name" type="text" required class="w-full rounded-lg border border-sand dark:border-white/15 dark:bg-transparent px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1.5">Email</label>
+          <input id="email" name="email" type="email" required class="w-full rounded-lg border border-sand dark:border-white/15 dark:bg-transparent px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+        </div>
+        <div>
+          <label for="subject" class="block text-sm font-medium mb-1.5">Subject</label>
+          <input id="subject" name="subject" type="text" class="w-full rounded-lg border border-sand dark:border-white/15 dark:bg-transparent px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium mb-1.5">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full rounded-lg border border-sand dark:border-white/15 dark:bg-transparent px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+        </div>
+        <!-- Honeypot field to deter simple spam bots -->
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <button type="submit" class="w-full rounded-lg bg-rose-500 text-white font-medium py-3 hover:bg-rose-600 transition-colors">
+          Send Message
+        </button>
+        <p id="form-status" class="text-sm hidden"></p>
+      </form>
+
+      <div class="border border-sand rounded-xl2 bg-sand/30 dark:bg-white/5 dark:border-white/10 p-6 space-y-4">
+        <div>
+          <h2 class="font-serif text-lg font-semibold mb-1">Email</h2>
+          <a href="mailto:salonsolahair@gmail.com" class="text-rose-600 underline text-sm">salonsolahair@gmail.com</a>
+        </div>
+        <div>
+          <h2 class="font-serif text-lg font-semibold mb-1">What we can help with</h2>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-ink/70">
+            <li>Corrections or factual updates to an article</li>
+            <li>Content suggestions or topic requests</li>
+            <li>General questions about this site</li>
+          </ul>
+        </div>
+        <p class="text-xs text-ink/50 pt-2 border-t border-sand dark:border-white/10">
+          For questions about a specific studio, professional, or appointment,
+          please contact them directly — we're an independent information
+          resource and don't manage bookings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const status = document.getElementById('form-status');
+
+    form?.addEventListener('submit', async (e) => {
+      // Only intercept if a real Formspree endpoint has been configured.
+      if (form.action.includes('YOUR_FORM_ID')) {
+        e.preventDefault();
+        if (status) {
+          status.textContent = 'Contact form isn\'t connected yet — email us directly at salonsolahair@gmail.com in the meantime.';
+          status.className = 'text-sm text-rose-600';
+          status.classList.remove('hidden');
+        }
+        return;
+      }
+
+      e.preventDefault();
+      const data = new FormData(form);
+      if (status) {
+        status.textContent = 'Sending…';
+        status.className = 'text-sm text-ink/60';
+        status.classList.remove('hidden');
+      }
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.reset();
+          if (status) {
+            status.textContent = 'Thanks — your message has been sent.';
+            status.className = 'text-sm text-green-600';
+          }
+        } else {
+          throw new Error('Request failed');
+        }
+      } catch {
+        if (status) {
+          status.textContent = 'Something went wrong. Please email us directly at salonsolahair@gmail.com.';
+          status.className = 'text-sm text-rose-600';
+        }
+      }
+    });
+  </script>
+</Layout>

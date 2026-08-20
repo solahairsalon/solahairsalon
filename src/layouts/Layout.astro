@@ -1,0 +1,190 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  schema?: Record<string, any> | Record<string, any>[];
+  publishDate?: string; // ISO date, e.g. '2026-08-20'
+  modifiedDate?: string; // ISO date — defaults to publishDate if omitted
+  noindex?: boolean; // true for utility pages like 404 that shouldn't be indexed
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  ogImage = 'https://images.unsplash.com/photo-1781450090585-1a511b7066d9?auto=format&fit=crop&w=1200&q=60',
+  schema,
+  publishDate = '2026-08-20',
+  modifiedDate,
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://solahairsalon.com');
+const canonicalURL = new URL(canonicalPath, site).toString();
+const schemaList = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const effectiveModified = modifiedDate ?? publishDate;
+const dateAwareTypes = new Set(['Article', 'BlogPosting', 'AboutPage', 'ContactPage']);
+const schemaListWithDates = schemaList.map((s) =>
+  dateAwareTypes.has(s['@type'])
+    ? { datePublished: `${publishDate}T00:00:00Z`, dateModified: `${effectiveModified}T00:00:00Z`, ...s }
+    : s
+);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="solahairsalon" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Hreflang: single-locale site, but self-referencing + x-default tags
+         are still expected by SEO audits and tell search engines definitively
+         there's no alternate-language version to consider. -->
+    <link rel="alternate" hreflang="en-us" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Sola Hair Salon" />
+
+    <!-- Article-style publish/modified signals — used by search engines and
+         social previews to show freshness. Every page passes at least a
+         default publishDate; pass explicit dates from a page when its real
+         content date is known. -->
+    <meta property="article:published_time" content={`${publishDate}T00:00:00Z`} />
+    <meta property="article:modified_time" content={`${effectiveModified}T00:00:00Z`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solahairsalon" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#312e81" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+
+    <!-- Inline, render-blocking (intentionally) theme init — runs before CSS
+         paints so there's no flash of the wrong theme on load. -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          // Dark is the site's primary theme — default to it unless the
+          // visitor has explicitly chosen light mode before.
+          if (stored !== 'light') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    {schemaListWithDates.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <!-- Performance: preconnect to the two external origins the page actually uses -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body class="bg-cream text-ink antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white px-4 py-2 rounded shadow z-50">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .font-serif { font-family: 'Fraunces', Georgia, serif; }
+
+  /*
+   * Dark mode: a global override layer rather than per-page dark: variants.
+   * The whole site is built from a small, consistent palette (bg-cream,
+   * bg-white, bg-sand, border-sand, text-ink + opacity steps), so remapping
+   * those exact utility classes under html.dark covers every page without
+   * editing each one individually. Sections that are already dark (bg-ink,
+   * the footer, hero overlays) are untouched — they read correctly in both
+   * modes already.
+   */
+  html.dark body { background-color: #17140f; }
+
+  html.dark .bg-cream { background-color: #17140f; }
+  html.dark .bg-cream\/85 { background-color: rgba(23, 20, 15, 0.85); }
+
+  html.dark .bg-white { background-color: #211c17; }
+  html.dark .bg-white\/10 { background-color: rgba(33, 28, 23, 0.5); }
+  html.dark .bg-white\/20 { background-color: rgba(33, 28, 23, 0.65); }
+  html.dark .bg-white\/5 { background-color: rgba(255, 255, 255, 0.04); }
+
+  html.dark .bg-sand { background-color: #2a241d; }
+  html.dark .bg-sand\/30 { background-color: rgba(42, 36, 29, 0.5); }
+  html.dark .bg-sand\/40 { background-color: rgba(42, 36, 29, 0.6); }
+
+  html.dark .border-sand { border-color: #382f24; }
+  html.dark .border-sand\/80 { border-color: rgba(56, 47, 36, 0.8); }
+
+  html.dark .text-ink { color: #f3ece1; }
+  html.dark .text-ink\/40 { color: rgba(243, 236, 225, 0.4); }
+  html.dark .text-ink\/50 { color: rgba(243, 236, 225, 0.5); }
+  html.dark .text-ink\/60 { color: rgba(243, 236, 225, 0.6); }
+  html.dark .text-ink\/65 { color: rgba(243, 236, 225, 0.65); }
+  html.dark .text-ink\/70 { color: rgba(243, 236, 225, 0.72); }
+  html.dark .text-ink\/75 { color: rgba(243, 236, 225, 0.75); }
+  html.dark .text-ink\/80 { color: rgba(243, 236, 225, 0.82); }
+
+  html.dark .shadow-soft { box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55); }
+
+  /* Form controls and a few one-off surfaces that don't use the shared classes */
+  html.dark input,
+  html.dark textarea,
+  html.dark select {
+    background-color: #211c17;
+    color: #f3ece1;
+  }
+
+  html.dark ::selection { background: #a8503a; color: #fff; }
+
+  /* Ambient depth glows for the dark theme — subtle, fixed, behind content */
+  html.dark body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(600px circle at 10% 0%, rgba(168, 80, 58, 0.14), transparent 55%),
+      radial-gradient(500px circle at 90% 20%, rgba(49, 46, 129, 0.18), transparent 55%);
+  }
+
+  /* Give white cards genuine depth against the dark background */
+  html.dark .shadow-sm { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 6px 20px -8px rgba(0, 0, 0, 0.5); }
+</style>
