@@ -1,0 +1,57 @@
+# Sola Hair Salon
+
+> Independent, informational website about the Sola Salon Studios salon-suite
+> model, hair services, hairstyles, hair care, and salon pricing. Not
+> affiliated with, sponsored by, or endorsed by Sola Salon Studios.
+
+Sola Hair Salon (solahairsalon.com) is an independent editorial resource for
+people researching Sola Salon Studios and the salon-suite business model
+before booking an appointment. Content covers how the model works, how
+pricing is set by independent professionals, hair services and techniques,
+hairstyle guidance by face shape and hair type, hair care routines, and two
+free, privacy-respecting calculators (salon cost estimate, hair growth
+timeline). All content is originally written and human-reviewed; none is
+scraped, spun, or copied from other sources.
+
+## Core guides
+- [Sola Hair Salon](https://solahairsalon.com/sola-hair-salon/): Primary overview of the Sola Salon Studios salon-suite model.
+- [Sola Salon Studio](https://solahairsalon.com/sola-salon-studio/): How an individual studio operates and how to evaluate a professional.
+- [Sola Salons](https://solahairsalon.com/sola-salons/): The network of independent professionals across locations.
+- [Sola Salon Studios Near Me](https://solahairsalon.com/sola-salon-studios-near-me/): Practical, privacy-respecting ways to find a studio.
+
+## Hair services
+- [Hair Services overview](https://solahairsalon.com/hair-services/)
+- [Haircuts](https://solahairsalon.com/hair-services/haircuts/)
+- [Hair Coloring](https://solahairsalon.com/hair-services/hair-coloring/)
+- [Hair Styling](https://solahairsalon.com/hair-services/hair-styling/)
+- [Hair Treatments](https://solahairsalon.com/hair-services/hair-treatments/)
+- [Hair Extensions](https://solahairsalon.com/hair-services/hair-extensions/)
+- [Bridal Hair](https://solahairsalon.com/hair-services/bridal-hair/)
+
+## Hairstyles
+- [Hairstyles overview](https://solahairsalon.com/hairstyles/)
+- [By Face Shape](https://solahairsalon.com/hairstyles/by-face-shape/)
+- [Short Hairstyles](https://solahairsalon.com/hairstyles/short-hairstyles/)
+- [Men's Hairstyles](https://solahairsalon.com/hairstyles/mens-hairstyles/)
+- [Women's Hairstyles](https://solahairsalon.com/hairstyles/womens-hairstyles/)
+
+## Hair care
+- [Hair Care overview](https://solahairsalon.com/hair-care/)
+- [Curly Hair Care](https://solahairsalon.com/hair-care/curly-hair/)
+- [Dry Hair Care](https://solahairsalon.com/hair-care/dry-hair/)
+- [Caring for Colored Hair](https://solahairsalon.com/hair-care/hair-coloring-care/)
+- [Hair Maintenance](https://solahairsalon.com/hair-care/hair-maintenance/)
+
+## Tools
+- [Salon Cost Calculator](https://solahairsalon.com/tools/salon-cost-calculator/): Free, client-side price-range estimator.
+- [Hair Length Calculator](https://solahairsalon.com/tools/hair-length-calculator/): Free, client-side hair-growth timeline estimator.
+
+## About
+- [About](https://solahairsalon.com/about/)
+- [Contact](https://solahairsalon.com/contact/)
+- [Disclaimer](https://solahairsalon.com/disclaimer/): Independence and affiliation notice.
+
+## Optional
+- [Blog](https://solahairsalon.com/blog/)
+- [Privacy Policy](https://solahairsalon.com/privacy-policy/)
+- [Terms & Conditions](https://solahairsalon.com/terms/)

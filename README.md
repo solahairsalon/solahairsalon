@@ -102,6 +102,7 @@ npx wrangler pages deploy dist
 
 ## Project structure
 ```
+wrangler.toml                   Cloudflare Wrangler config (CLI deploys)
 src/
   layouts/Layout.astro         SEO/meta, fonts, dark-mode init + CSS layer
   components/
@@ -119,10 +120,24 @@ src/
     blog/index.astro · about.astro · privacy-policy.astro · terms.astro · disclaimer.astro · 404.astro
 public/
   _headers                      Cloudflare Pages security headers (CSP, HSTS, etc.)
-  robots.txt · site.webmanifest · favicons
+  _redirects                    www → apex canonical redirect
+  robots.txt · llms.txt · site.webmanifest · favicons
   images/gallery/                Real salon photos + video poster frame
   video/studio-tour.mp4          Compressed, silent studio walkthrough
 ```
+
+### wrangler.toml
+Lets you deploy from the command line with `npx wrangler pages deploy dist`
+instead of (or alongside) connecting a git repo in the Cloudflare dashboard.
+Points Wrangler at the static `dist/` build output — no bindings, KV, D1, or
+Workers logic needed since this project has no backend.
+
+### llms.txt
+Follows the emerging [llms.txt](https://llmstxt.org) convention — a plain-text
+sitemap-style summary at the site root aimed at AI assistants and LLM-based
+tools, so they can quickly understand what the site covers and link to the
+right page instead of guessing from a full crawl. Update it whenever you add
+or restructure major pages, the same way you'd update a sitemap.
 
 ## Before launch checklist
 - [ ] Point the `solahairsalon.com` DNS at Cloudflare Pages
