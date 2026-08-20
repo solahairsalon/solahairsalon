@@ -149,6 +149,11 @@ const schemaListWithDates = schemaList.map((s) =>
   html.dark .bg-sand\/30 { background-color: rgba(42, 36, 29, 0.5); }
   html.dark .bg-sand\/40 { background-color: rgba(42, 36, 29, 0.6); }
 
+  /* Calculator result panels: bg-rose-50 (a pale pink) is unreadable in
+     dark mode once its text inherits the light text-ink color — swap it
+     for a dark, tinted rose that still reads as an "accent" panel. */
+  html.dark .bg-rose-50 { background-color: rgba(168, 80, 58, 0.16); }
+
   html.dark .border-sand { border-color: #382f24; }
   html.dark .border-sand\/80 { border-color: rgba(56, 47, 36, 0.8); }
 

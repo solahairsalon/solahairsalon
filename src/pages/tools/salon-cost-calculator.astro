@@ -77,7 +77,7 @@ const schema = {
     <div id="cost-result" class="hidden mt-6 border border-sand rounded-xl2 bg-rose-50 p-6">
       <h2 class="font-serif text-xl font-semibold mb-4">Estimated Salon Cost</h2>
       <dl class="space-y-2 text-sm" id="cost-breakdown"></dl>
-      <p class="mt-4 font-semibold" id="cost-total"></p>
+      <p class="mt-5 font-serif text-3xl sm:text-4xl font-extrabold text-ink" id="cost-total"></p>
       <p class="text-xs text-ink/60 mt-4">
         This calculator provides an estimated price range for informational purposes
         only. Actual salon prices vary by location, stylist, service complexity, hair
@@ -196,7 +196,7 @@ const schema = {
         subtotal += price;
         if (breakdown) {
           const row = document.createElement('div');
-          row.className = 'flex justify-between';
+          row.className = 'flex justify-between font-bold text-ink';
           row.innerHTML = `<dt>${svc.label}</dt><dd>$${price.toFixed(0)}</dd>`;
           breakdown.appendChild(row);
         }
