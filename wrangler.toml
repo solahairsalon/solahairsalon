@@ -1,7 +1,7 @@
 # Cloudflare Wrangler config for deploying this static Astro build to
 # Cloudflare Pages via the CLI:
 #   npm run build
-#   npx wrangler pages deploy dist
+#   npx wrangler deploy
 #
 # No bindings, KV, D1, or Workers logic are used — this project has no
 # backend/database, so this file only needs to point Wrangler at the
