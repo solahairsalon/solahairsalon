@@ -80,6 +80,18 @@ npm install
 npm run dev
 ```
 
+> **Note:** this project intentionally does not ship a `package-lock.json`
+> (no network access was available to generate a real, registry-valid one
+> while building it). Run `npm install` once locally to generate your own,
+> then commit it — Cloudflare Pages runs `npm ci` whenever a lock file is
+> present, which fails hard if it's ever out of sync with `package.json`
+> (e.g. after manually bumping a dependency version without re-running
+> `npm install`). If a deploy ever fails with an `npm ci` / "lock file
+> does not satisfy" error, the fix is: `rm -rf node_modules
+> package-lock.json && npm install`, then commit the fresh lock file — or
+> simply delete `package-lock.json` from the repo entirely and let
+> Cloudflare fall back to a plain `npm install` during the build.
+
 ## Build
 ```bash
 npm run build
