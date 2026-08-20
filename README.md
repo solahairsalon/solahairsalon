@@ -141,10 +141,28 @@ public/
 ```
 
 ### wrangler.toml
-Lets you deploy from the command line with `npx wrangler pages deploy dist`
-instead of (or alongside) connecting a git repo in the Cloudflare dashboard.
-Points Wrangler at the static `dist/` build output — no bindings, KV, D1, or
-Workers logic needed since this project has no backend.
+Cloudflare now has two separate deployment paths, and which one your project
+uses depends on how it was created in the dashboard — not just what's in this
+repo:
+
+- **Classic Pages** (`npx wrangler pages deploy dist`, or a Pages project
+  connected via git) reads `pages_build_output_dir`.
+- **Unified Workers static-assets deploy** (`npx wrangler deploy` — this is
+  what Cloudflare's git-integration pipeline runs by default on newer
+  projects, even some created through the "Pages" UI flow) reads the
+  `[assets]` block instead.
+
+This file includes both keys so it works either way without you needing to
+know in advance which path your project takes. There's no Worker script
+(`main`) defined — this is a pure static site with no backend, so `[assets]`
+alone is enough for the unified path to serve `dist/` directly.
+
+If your Cloudflare build log ever shows `Executing user deploy command: npx
+wrangler deploy` followed by `Missing entry-point to Worker script or to
+assets directory`, that means your `wrangler.toml` is missing the `[assets]`
+block — this repo already has it, so you shouldn't hit that again, but it's
+worth knowing what the error means if it resurfaces after future edits to
+this file.
 
 ### .wrangler/ (not committed)
 When you run `wrangler dev` or `wrangler pages deploy` locally, Wrangler

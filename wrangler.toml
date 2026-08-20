@@ -1,12 +1,24 @@
-# Cloudflare Wrangler config for deploying this static Astro build to
-# Cloudflare Pages via the CLI:
-#   npm run build
-#   npx wrangler deploy
+# Cloudflare Wrangler config for this static Astro build.
 #
-# No bindings, KV, D1, or Workers logic are used — this project has no
-# backend/database, so this file only needs to point Wrangler at the
-# static build output.
+# Cloudflare now has two separate deployment paths that both use this file:
+#
+#   1. Classic Pages CLI:      npx wrangler pages deploy dist
+#      Reads `pages_build_output_dir` below.
+#
+#   2. Unified Workers static-assets deploy: npx wrangler deploy
+#      (this is what Cloudflare's git-integration build pipeline runs by
+#      default on newer/unified projects — even ones created as "Pages" can
+#      end up on this path). Reads the [assets] block below instead.
+#
+# Both keys are included so this file works no matter which command your
+# Cloudflare project actually invokes. There's no Worker script (`main`) —
+# this is a pure static site with no backend, so [assets] alone is enough
+# for the unified deploy path to serve dist/ directly.
 
 name = "solahairsalon"
 compatibility_date = "2026-08-20"
+
 pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"
