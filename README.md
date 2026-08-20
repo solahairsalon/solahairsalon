@@ -10,7 +10,7 @@ Contact: **salonsolahair@gmail.com**
 ## Stack
 - **Astro** (static output — no server runtime)
 - **Tailwind CSS**, "Fraunces + Inter" editorial type system
-- **@astrojs/sitemap** for automatic sitemap generation
+- Static, hand-written `public/sitemap.xml` (see "Sitemap maintenance" below)
 - No database, no backend/API routes — calculators and the contact form run
   client-side / via a third-party form endpoint
 - Real photography (locally hosted, compressed) + a compressed studio-tour
@@ -115,6 +115,8 @@ npx wrangler pages deploy dist
 ## Project structure
 ```
 wrangler.toml                   Cloudflare Wrangler config (CLI deploys)
+.node-version / .nvmrc          Pins Node 20.18.1 for Cloudflare Pages, nvm, Volta, etc.
+.gitignore                      Excludes node_modules/, dist/, .astro/, .wrangler/, .env
 src/
   layouts/Layout.astro         SEO/meta, fonts, dark-mode init + CSS layer
   components/
@@ -144,12 +146,52 @@ instead of (or alongside) connecting a git repo in the Cloudflare dashboard.
 Points Wrangler at the static `dist/` build output — no bindings, KV, D1, or
 Workers logic needed since this project has no backend.
 
+### .wrangler/ (not committed)
+When you run `wrangler dev` or `wrangler pages deploy` locally, Wrangler
+creates a `.wrangler/` folder to cache local build/dev state. It's a
+generated artifact, the same category of thing as `node_modules/` or
+`dist/` — it's excluded via `.gitignore` rather than committed, and will
+appear on your machine the first time you run a Wrangler command.
+
+### .node-version / .nvmrc
+Both pin Node `20.18.1`, an LTS release compatible with Astro 4.x. Cloudflare
+Pages reads `.node-version` automatically to pick the build runtime instead
+of falling back to whatever the newest available version happens to be
+(the earlier build log showed it auto-detecting `nodejs@24.18.0`, which
+works today but isn't guaranteed to stay compatible as Astro/Node both keep
+releasing). `.nvmrc` is the same version for anyone using `nvm` locally
+(`nvm use` will pick it up automatically). `package.json` also declares a
+matching `engines.node` field for tools that check that instead.
+
 ### llms.txt
 Follows the emerging [llms.txt](https://llmstxt.org) convention — a plain-text
 sitemap-style summary at the site root aimed at AI assistants and LLM-based
 tools, so they can quickly understand what the site covers and link to the
 right page instead of guessing from a full crawl. Update it whenever you add
 or restructure major pages, the same way you'd update a sitemap.
+
+### Sitemap maintenance (public/sitemap.xml)
+This project originally used `@astrojs/sitemap` to generate `sitemap.xml`
+automatically, but that package has a reproducible crash — `Cannot read
+properties of undefined (reading 'reduce')` inside its `astro:build:done`
+build hook — that happened consistently with this project's config on both
+Cloudflare's build environment and a local Windows machine, across two
+different package versions (3.1.6 and 3.2.1). That's a strong signal it's a
+real upstream bug rather than an environment fluke, so the integration was
+removed entirely and `public/sitemap.xml` is now a plain static file listing
+every page.
+
+**When you add, remove, or rename a page**, update `public/sitemap.xml` to
+match — add or remove a `<url><loc>...</loc><lastmod>...</lastmod></url>`
+block for it. The file currently lists all 30 pages with a shared
+`<lastmod>` date; update that date for a specific URL once you know its real
+last-modified date, the same way `publishDate`/`modifiedDate` work in
+`Layout.astro`.
+
+If you'd rather have this generated automatically again in the future, try
+re-adding `@astrojs/sitemap` at whatever the latest version is at the time —
+the bug may get fixed upstream — but test a local build first before
+deploying.
 
 ## Before launch checklist
 - [ ] Point the `solahairsalon.com` DNS at Cloudflare Pages
@@ -195,7 +237,8 @@ or restructure major pages, the same way you'd update a sitemap.
   `trailingSlash: 'always'` in `astro.config.mjs` keeps every internal link,
   canonical tag, and sitemap entry on the same URL shape, so there's no
   separate redirect needed for that.
-- The sitemap (`@astrojs/sitemap`) now explicitly excludes the 404 page.
+- The static `public/sitemap.xml` never includes the 404 page — it's a
+  hand-written file listing only real, indexable pages.
 
 ## Trademark note
 "Sola Salon Studios" is a third-party brand. This project is written to describe

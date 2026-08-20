@@ -1,6 +1,29 @@
-node_modules
-dist
-.astro
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# Cloudflare Wrangler local dev/build cache — generated automatically by
+# `wrangler dev` / `wrangler pages deploy`. The folder itself is kept in
+# git (via .gitkeep) so it's present from a fresh clone, but everything
+# Wrangler actually writes inside it is machine-specific and ignored.
+.wrangler/*
+!.wrangler/.gitkeep
+
+# Environment variables / secrets
 .env
-.wrangler
+.env.*
+!.env.example
+
+# Editor / OS artifacts
 .DS_Store
+.vscode/*
+!.vscode/extensions.json
+*.log
+npm-debug.log*
+
+# Astro type-generation cache (kept in .astro/ above, listed separately in
+# case tooling ever writes it elsewhere)
+.astro-cache/

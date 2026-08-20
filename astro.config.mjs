@@ -1,9 +1,18 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
 
 // Static output = deploys directly to Cloudflare Pages (or any static host).
 // No adapter needed since there is no backend/SSR/database.
+//
+// NOTE: @astrojs/sitemap was removed. It has a reproducible crash
+// ("Cannot read properties of undefined (reading 'reduce')" in its
+// astro:build:done hook) with this project's config on both Cloudflare's
+// build environment and locally on Windows — the same failure across two
+// different machines and two different package versions (3.1.6 and 3.2.1)
+// points to a real upstream bug rather than an environment fluke. The
+// sitemap is now a hand-written static file at public/sitemap.xml instead,
+// which is dependency-free and can't crash the build. Update that file
+// whenever a page is added, removed, or renamed.
 export default defineConfig({
   site: 'https://solahairsalon.com',
   output: 'static',
@@ -14,15 +23,5 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  integrations: [
-    tailwind(),
-    // Plain sitemap() call — no custom filter. Astro's build always emits
-    // /404.html as a flat file outside the normal page/route list, so it was
-    // never actually included in the generated sitemap in the first place;
-    // the custom `filter` option here was redundant and, on top of that,
-    // triggered a real upstream bug in @astrojs/sitemap 3.1.x when combined
-    // with newer Astro 4.16.x internals ("Cannot read properties of
-    // undefined (reading 'reduce')" during the astro:build:done hook).
-    sitemap(),
-  ],
+  integrations: [tailwind()],
 });

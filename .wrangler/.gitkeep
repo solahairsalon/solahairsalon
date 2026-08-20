@@ -1,0 +1,6 @@
+This folder is Wrangler's local build/dev cache directory. It's created
+(and populated) automatically the first time you run `wrangler dev` or
+`wrangler pages deploy` — this placeholder file just keeps the empty
+folder present in the repo/zip before that happens. Everything else
+Wrangler writes in here is git-ignored (see .gitignore) since it's
+machine-specific generated state, not source code.
